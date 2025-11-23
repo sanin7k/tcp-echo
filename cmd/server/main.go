@@ -14,18 +14,6 @@ import (
 	"sanin7k/tcp-echo/internal/netutil"
 )
 
-func writeAll(conn net.Conn, b []byte) error {
-	written := 0
-	for written < len(b) {
-		n, err := conn.Write(b[written:])
-		if err != nil {
-			return err
-		}
-		written += n
-	}
-	return nil
-}
-
 func handleConn(conn net.Conn) {
 	defer conn.Close()
 	fmt.Println("Connected: ", conn.RemoteAddr())
